@@ -14,7 +14,10 @@ const Navbar = () => {
         {/* <Image src="/tiktok.png" alt='facebook' width={24} height={24}/> */}
         <Image src="/youtube.png" alt='facebook' width={24} height={24}/>
       </div>
-      <div className={styles.logo}>explore</div>
+      <div className={styles.logo}>
+        {/* Add your logo image here */}
+        <Image src="/CCVITBLogo.png" alt='logo' width={90} height={45}/>
+      </div>
       <div className={styles.links}>
         <ThemeToggle/>
         <Link href="/" className={styles.link}>Homepage</Link>

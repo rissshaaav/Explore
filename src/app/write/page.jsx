@@ -13,7 +13,7 @@ const Write = () => {
   const {data, status} = useSession();
   const router = useRouter();
   if(status==="loading") return <div className={styles.loading}>Loading...</div>;
-  if(status==="authenticated") router.push("/");
+  if(status==="unauthenticated") router.push("/");
   return (
     <div className={styles.container}>
       <input type="text" placeholder="Title" className={styles.input}/>

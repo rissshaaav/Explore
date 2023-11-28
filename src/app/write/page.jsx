@@ -8,10 +8,13 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const Write = () => {
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const {data, status} = useSession();
+
   const router = useRouter();
+  
   if(status==="loading") return <div className={styles.loading}>Loading...</div>;
   if(status==="unauthenticated") router.push("/");
   return (

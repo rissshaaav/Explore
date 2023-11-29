@@ -9,10 +9,9 @@ const Navbar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.social}>
-        <Image src="/linkedin.png" alt='linkedin' width={24} height={24}/>
-        <Image src="/instagram.png" alt='instagram' width={24} height={24}/>
-        {/* <Image src="/tiktok.png" alt='facebook' width={24} height={24}/> */}
-        <Image src="/twitter.webp" alt='twitter' width={24} height={24}/>
+        <Link href="https://www.linkedin.com/company/cisco-vit-bhopal/"><Image src="/linkedin.png" alt='linkedin' width={24} height={24}/></Link>
+        <Link href="https://www.instagram.com/ciscovitb/?utm_source=ig_web_button_share_sheet&igshid=OGQ5ZDc2ODk2ZA=="><Image src="/instagram.png" alt='instagram' width={24} height={24}/></Link>
+        <Link href="https://x.com/CiscoVitB?s=20"><Image src="/twitter.webp" alt='twitter' width={24} height={24}/></Link>
       </div>
       <div className={styles.logo}>
         {/* Add your logo image here */}
@@ -20,7 +19,7 @@ const Navbar = () => {
       </div>
       <div className={styles.links}>
         <ThemeToggle/>
-        <Link href="/" className={styles.link}>Homepage</Link>
+        <Link href="/" className={styles.link}>Home</Link>
         <Link href="https://ciscovitb.vercel.app/#Contact" className={styles.link}>Contact</Link>
         <Link href="https://ciscovitb.vercel.app/#About" className={styles.link}>About</Link>
         <AuthLinks/>

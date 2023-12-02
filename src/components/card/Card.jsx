@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./card.module.css";
 import Link from "next/link";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const Card = ({ key, item }) => {
   return (
@@ -19,7 +19,7 @@ const Card = ({ key, item }) => {
         <Link href={`/posts/${item.slug}`}>
           <h1>{item.title}</h1>
         </Link>
-        {parse(item.desc.substring(0, 400)+'...')}
+        {parse(item.desc.substring(0, 400) + "...")}
         <Link href={`/posts/${item.slug}`} className={styles.link}>
           Read More
         </Link>

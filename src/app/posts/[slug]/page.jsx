@@ -9,7 +9,7 @@ const getData = async (slug) => {
     cache: "no-store",
   });
   if (!res.ok) {
-    throw new Error("CardList: failed to fetch posts");
+    throw new Error("posts/[slug]: failed to fetch post");
   }
   return res.json();
 };
@@ -49,7 +49,7 @@ const SinglePage = async ({ params }) => {
             <Comments postSlug={slug}/>
           </div>
         </div>
-        <Menu />
+        {/* <Menu /> */}
       </div>
     </div>
   );

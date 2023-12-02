@@ -24,14 +24,14 @@ const AuthLinks = () => {
       </div>
       {open && (
         <div className={styles.responsiveMenu}>
-          <Link href="/">Homepage</Link>
-          <Link href="/">Contact</Link>
-          <Link href="/">About</Link>
-          {status === "notauthenticated" ? (
-            <Link href="/login">Login</Link>
+          <Link href="/" onClick={()=> setOpen(!open)}>Home</Link>
+          <Link href="https://ciscovitb.vercel.app/#Contact">Contact</Link>
+          <Link href="https://ciscovitb.vercel.app/#About">About</Link>
+          {status === "unauthenticated" ? (
+            <Link href="/login" onClick={()=> setOpen(!open)}>Login</Link>
           ) : (
             <>
-              <Link href="/write">Write</Link>
+              <Link href="/write" onClick={()=> setOpen(!open)}>Write</Link>
               <span className={styles.link} onClick={signOut}>Logout</span>
             </>
           )}

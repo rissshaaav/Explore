@@ -13,7 +13,7 @@ const Login = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.socialButton} onClick={()=>signIn("google")}>Login with Google</div>
-        <div className={styles.socialButton}>Login with Github</div>
+        <div className={styles.socialButton} onClick={()=>signIn("github")}>Login with Github</div>
         <div className={styles.socialButton}>Login with Facebook</div>
       </div>
     </div>

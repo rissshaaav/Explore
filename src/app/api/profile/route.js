@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export const GET = async () => {
     const session = await getAuthSession();
-    console.log(session)
     if (!session) {
       return new NextResponse(
         JSON.stringify({ message: "Not Authenticated!" }, { status: 401 })

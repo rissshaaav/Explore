@@ -1,7 +1,10 @@
 import Card from "@/components/card/Card";
+import {headers} from "next/headers";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/profile", {
+    method: "GET",
+    headers: headers(),
     cache: "no-store",
   });
   if (!res.ok) {
@@ -11,7 +14,6 @@ const getData = async () => {
 };
 const Profile = async () => {
   const data = await getData();
-  console.log(data)
   const user = data.user;
   const posts = data.posts;
   return (

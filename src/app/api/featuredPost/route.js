@@ -8,9 +8,8 @@ export const GET = async () => {
   try {
     const post = await prisma.post.findFirst({
       where: {
-        title: "This is CISCO, we SECURE your CONNECT!!",
-        catSlug: "coding",
-        userEmail: "mishrishav@gmail.com",
+        title: "Cisco Community Inaugural Event",
+        userEmail: "ketan.sharma2021@vitbhopal.ac.in",
       },
     });
 

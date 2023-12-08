@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+"use client";
+import { useState } from "react";
 import styles from "./write.module.css";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import dynamic from 'next/dynamic'; // Import dynamic from Next.js
+import { useEffect } from "react";
 
 import {
   getStorage,
@@ -13,12 +16,9 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 
-const ReactQuill = dynamic(() => import('react-quill'), {
-  ssr: false // Disable server-side rendering for ReactQuill
-});
-
 const Write = () => {
-  const { data, status } = useSession();
+
+  const {data, status} = useSession();
   const [file, setFile] = useState(null);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -87,6 +87,7 @@ const Write = () => {
 
     if (res.status === 200) {
       const data = await res.json();
+      console.log(data)
       router.push(`/posts/${data?.slug}`);
     }
   };
@@ -123,17 +124,7 @@ const Write = () => {
             </button>
           </div>
         )}
-        {/* Conditionally render ReactQuill */}
-        {typeof document !== 'undefined' && ReactQuill && (
-          <ReactQuill
-            className={styles.textArea}
-            readOnly={false}
-            theme="bubble"
-            value={value}
-            onChange={setValue}
-            placeholder="Tell Your Story..."
-          />
-        )}
+        <ReactQuill className={styles.textArea} readOnly={false} theme="bubble" value={value} onChange={setValue} placeholder="Tell Your Story..." />
       </div>
       <button className={styles.publish} onClick={handleSubmit}>Publish</button>
     </div>

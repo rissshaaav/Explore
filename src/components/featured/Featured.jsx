@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const getData = async () => {
-  const API_BASE_URL = process.env.VERCEL_URL || "http://localhost:3000";
+  const API_BASE_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
   const res = await fetch(`${API_BASE_URL}/api/featuredPost`, {
     cache: "no-store",
   });

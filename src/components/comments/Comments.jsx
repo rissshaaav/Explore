@@ -20,7 +20,7 @@ const fetcher = async (url) => {
 };
 const Comments = ({ postSlug }) => {
   const { status } = useSession();
-  const API_BASE_URL = process.env.VERCEL_URL || "http://localhost:3000";
+  const API_BASE_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
   const { data, mutate, isLoading } = useSWR(
     `${API_BASE_URL}/api/comments?postSlug=${postSlug}`,
     fetcher

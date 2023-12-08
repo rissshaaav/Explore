@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useEffect } from "react";
 import styles from "./write.module.css";
-import Image from "next/image";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.bubble.css";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import Image from "next/image";
+import dynamic from 'next/dynamic';
+// import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
 
 import {
   getStorage,
@@ -16,9 +17,12 @@ import {
 } from "firebase/storage";
 import { app } from "@/utils/firebase";
 
-const Write = () => {
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false // Disable server-side rendering for ReactQuill
+});
 
-  const {data, status} = useSession();
+const Write = () => {
+  const { data, status } = useSession();
   const [file, setFile] = useState(null);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -27,8 +31,8 @@ const Write = () => {
   const [catSlug, setCatSlug] = useState("");
   const [media, setMedia] = useState("");
 
-  const storage = getStorage(app);
   useEffect(() => {
+    const storage = getStorage(app);
     const upload = () => {
       const name = new Date().getTime() + file.name;
       const storageRef = ref(storage, name);
@@ -50,7 +54,7 @@ const Write = () => {
               break;
           }
         },
-        (error) => { },
+        (error) => {},
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setMedia(downloadURL);
@@ -62,7 +66,8 @@ const Write = () => {
     file && upload();
   }, [file]);
 
-  if (status === "loading") return <div className={styles.loading}>Loading...</div>;
+  if (status === "loading")
+    return <div className={styles.loading}>Loading...</div>;
   if (status === "unauthenticated") router.push("/");
 
   const slugify = (str) =>
@@ -87,15 +92,23 @@ const Write = () => {
 
     if (res.status === 200) {
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       router.push(`/posts/${data?.slug}`);
     }
   };
 
   return (
     <div className={styles.container}>
-      <input type="text" placeholder="Title" className={styles.input} onChange={(e) => setTitle(e.target.value)} />
-      <select className={styles.select} onChange={(e) => setCatSlug(e.target.value)}>
+      <input
+        type="text"
+        placeholder="Title"
+        className={styles.input}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <select
+        className={styles.select}
+        onChange={(e) => setCatSlug(e.target.value)}
+      >
         <option value="style">style</option>
         <option value="fashion">fashion</option>
         <option value="food">food</option>
@@ -109,7 +122,11 @@ const Write = () => {
         </button>
         {open && (
           <div className={styles.add}>
-            <input type="file" id="image1" style={{display : "none"}} onChange={e => setFile(e.target.files[0])}
+            <input
+              type="file"
+              id="image1"
+              style={{ display: "none" }}
+              onChange={(e) => setFile(e.target.files[0])}
             />
             <button className={styles.addButton}>
               <label htmlFor="image1">
@@ -124,9 +141,21 @@ const Write = () => {
             </button>
           </div>
         )}
-        <ReactQuill className={styles.textArea} readOnly={false} theme="bubble" value={value} onChange={setValue} placeholder="Tell Your Story..." />
+        {/* Conditionally render ReactQuill */}
+        {typeof document !== 'undefined' && ReactQuill && (
+          <ReactQuill
+            className={styles.textArea}
+            readOnly={false}
+            theme="bubble"
+            value={value}
+            onChange={setValue}
+            placeholder="Tell Your Story..."
+          />
+        )}
       </div>
-      <button className={styles.publish} onClick={handleSubmit}>Publish</button>
+      <button className={styles.publish} onClick={handleSubmit}>
+        Publish
+      </button>
     </div>
   );
 };

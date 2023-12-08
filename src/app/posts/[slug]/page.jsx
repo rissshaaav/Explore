@@ -5,7 +5,7 @@ import Link from "next/link";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
-  const API_BASE_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
+  const API_BASE_URL = process.env.API_BASE_URL ? `https://${process.env.API_BASE_URL}` : "http://localhost:3000";
   const res = await fetch(`${API_BASE_URL}/api/posts/${slug}`, {
     cache: "no-store",
   });

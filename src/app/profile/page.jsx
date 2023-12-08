@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "./profile.module.css";
 
 const getData = async () => {
-  const API_BASE_URL = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
+  const API_BASE_URL = process.env.API_BASE_URL ? `https://${process.env.API_BASE_URL}` : "http://localhost:3000";
   const res = await fetch(`${API_BASE_URL}/api/profile`, {
     method: "GET",
     headers: headers(),

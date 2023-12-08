@@ -25,7 +25,7 @@ const SinglePage = async ({ params }) => {
           <div className={styles.user}>
             {data?.user?.image && (
               <div className={styles.userImageContainer}>
-                <Link href={`/profile/${data.userEmail}`}>
+                <Link href={`${API_BASE_URL}/profile/${data.userEmail}`}>
                   <Image
                     src={data.user.image}
                     alt=""
@@ -36,7 +36,7 @@ const SinglePage = async ({ params }) => {
               </div>
             )}
             <div className={styles.userTextContainer}>
-              <Link href={`/profile/${data.userEmail}`}>
+              <Link href={`${API_BASE_URL}/profile/${data.userEmail}`}>
                 <span className={styles.username}>{data?.user.name}</span>
               </Link>
               <span className={styles.date}>26.11.2023</span>

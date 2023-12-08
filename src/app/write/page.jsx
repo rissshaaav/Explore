@@ -81,7 +81,7 @@ const Write = () => {
         desc: value,
         img: media,
         slug: slugify(title),
-        catSlug: catSlug || "style", //If not selected, choose the general category
+        catSlug: catSlug || "style", //If not selected, choose the style category
       }),
     });
 

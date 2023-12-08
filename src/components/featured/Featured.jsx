@@ -31,7 +31,7 @@ const Featured = async () => {
       <div className={styles.post}>
         {data?.img && (
           <div className={styles.imgContainer}>
-            <Image src="/webex.png" alt="" fill className={styles.image} />
+            <Image src="/inaugration.jpg" alt="" fill className={styles.image} />
           </div>
         )}
         <div className={styles.textContainer}>

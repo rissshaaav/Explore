@@ -26,6 +26,7 @@ export const GET = async(req)=>{
     }
 }
 
+//create post
 export const POST = async (req) => {
     const session  = await getAuthSession();
 

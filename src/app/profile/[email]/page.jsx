@@ -1,5 +1,5 @@
 import Card from "@/components/card/Card";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 import Image from "next/image";
 import styles from "../profile.module.css";
 
@@ -7,7 +7,9 @@ const getData = async (email) => {
   const API_BASE_URL = process.env.API_BASE_URL ? `https://${process.env.API_BASE_URL}` : "http://localhost:3000";
   const res = await fetch(`${API_BASE_URL}/api/profile/${email}`, {
     method: "GET",
-    headers: headers(),
+    headers: {
+      "Content-Type": "application/json",
+    },
     cache: "no-store",
   });
   if (!res.ok) {

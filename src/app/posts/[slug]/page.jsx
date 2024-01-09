@@ -3,6 +3,7 @@ import styles from "./singlePage.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Comments from "@/components/comments/Comments";
+import DeleteButton from "@/components/deleteButton/DeleteButton";
 
 const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/posts/${slug}`, {
@@ -54,6 +55,7 @@ const SinglePage = async ({ params }) => {
             className={styles.description}
             dangerouslySetInnerHTML={{ __html: data?.desc }}
           />
+          <DeleteButton postSlug={slug} authorEmail={data.user.email} />
           <div className={styles.comment}>
             <Comments postSlug={slug} />
           </div>
